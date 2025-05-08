@@ -2,209 +2,192 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <title>影響我最深的一句話</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+  <title>RWD 回應式網頁切版</title>
+  <link rel="stylesheet" type="text/css" href="rwd-layout4.css"  />
+  <script>
+    function toggleMenu() {
+      const dropdown = document.getElementById("mobileDropdown");
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+  </script>
+  
   <style>
-    body {
-      font-family: 'Microsoft JhengHei', sans-serif;
-      background-color: white;
-      padding: 20px;
-    }
-    h1 {
-      text-align: center;
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-      font-size: 50px;
-    }
-    .container {
+
+  .list {
+    display: flex;
+    justify-content: center;
+  }
+  .item {
+    flex: none;
+    width: 280px;
+    margin: 10px;
+    background-color: gray;
+  }
+  .headline {
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+  }
+  .menu-option {
+    padding: 10px 20px;
+    display: inline-block;
+    background-color: #ccc;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .menu-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+.menu-list li {
+  background-color: #f3a4f3;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+  .desktop-menu {
+    text-align: center;
+    margin: 20px 0;
+  }
+  .mobile-menu {
+    text-align: center;
+    display: none;
+  }
+  .hamburger {
+    font-size: 30px;
+    cursor: pointer;
+  }
+  .mobile-dropdown {
+  display: none;
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+  .mobile-dropdown li {
+  background-color: #f3a4f3;
+  padding: 10px;
+  margin: 5px auto;
+  width: 80%;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 桌機三欄 */
+  grid-template-rows: repeat(2, 300px);
+  gap: 10px;
+  max-width: 1800px;
+  margin: 50px auto;
+}
+
+    .grid-item {
+      background-color: #eb89e2;
+      color: white;
       display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
     }
-    .left {
-      background-color: #eb0f0f;
-      padding: 20px;
-      text-align: center;
-      flex: 1 1 100%;
-      color: #000080;
-      border-radius: 0;
+    .responsive-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* 補一手也可以 */
+  border-radius: 8px; /* 看起來更順眼 */
+}
+
+    
+  @media only screen and (max-width: 1250px) {
+    .list {
+    flex-wrap: wrap;
     }
-    .left img {
-      width: 100%;
-      height: auto;
-      margin-top: 10px;
+    .item {
+    width: 45%; /* 或更小依照畫面 */
     }
-    .right {
-      display: flex; /* 使用彈性佈局 */
-      gap: 20px; /* 區塊之間的間距 */
-      background-color: #0ee2a3; /* 淺橘色背景 */
-      padding: 20px;
-      border-radius: 0; /* 去掉圓角 */
-      width: 100%; /* 確保右側區塊占滿容器寬度 */
     }
-    .right-left {
-      flex: 1 1 100%;
-      display: flex;
+  @media screen and (max-width: 500px) {
+    .list {
       flex-direction: column;
-      gap: 20px;
+      align-items: center;
     }
-    .right-right {
-      flex: 0 0 33.33%; /* 右半邊占據 1/3 寬度 */
-      background-color: #0ee2a3; /* 可選的背景色 */
-      border-radius: 0; /* 去掉圓角 */
-      font-size: 24px; /* 統一文字大小 */
-      line-height: 1.5; /* 增加行距，讓文字更易讀 */
+    .item {
+      width: 90%;
     }
-    .section {
-      flex: 1 1 calc(50% - 20px);
-      box-sizing: border-box;
-      padding: 10px;
-      font-size: 18px;
-      border-radius: 0;
+    .desktop-menu {
+      display: none;
+      text-align: center;
     }
-    .section h3 {
-      background-color: pink;
-      padding: 5px;
-      font-size: 34px;
-      margin: 0;
+    .mobile-menu {
+      text-align: center;
+      display: block;
     }
-    .wavy-strikethrough {
-      background-color: pink;
-      display: inline-block;
-      font-weight: bold;
-      font-size: 34px;
-      padding: 3px;
-      text-decoration-line: line-through;
-      text-decoration-style: wavy;
-      text-decoration-color: rgba(245, 134, 134, 0.5);
-      text-decoration-thickness: 4px;
+    .headline {
+      font-size: 20px;
     }
-    .highlight-yellow {
-      background-color: pink;
-      padding: 5px;
-    }
-
-    /* 橫向螢幕 (寬度大於高度) */
-    @media (orientation: landscape) {
-      .container {
-        flex-direction: row;
-      }
-
-      .left {
-        flex: 1 1 30%; /* 左側區塊占據30%寬度 */
-        max-width: 30%;  /* 限制圖片區塊最大寬度 */
-      }
-
-      .right {
-        flex: 1 1 65%; /* 右側區塊占據65%寬度 */
-        padding: 20px;
-      }
-
-      .left img {
-        max-width: 100%;
-        height: auto;
-      }
-
-      .right-left, .right-right {
-        width: 100%;
-      }
-
-      .right p, .right h3 {
-        word-wrap: break-word;
-        line-height: 1.6;
-      }
-    }
-
-    /* 直向螢幕 (高度大於寬度) */
-    @media (orientation: portrait) {
-      .container {
-        flex-direction: column;
-      }
-
-      .left {
-        flex: 1 1 100%;
-        max-width: 100%;
-      }
-
-      .right-left, .right-right {
-        flex: 1 1 100%;
-      }
-
-      .left img {
-        width: 100%; 
-        height: auto; 
-        max-height: 100%; 
-    }
-    }
-  </style>
+    .grid-container {
+    grid-template-columns: 1fr; 
+    grid-template-rows: auto;  
+  }
+  }
+  </style> 
 </head>
 <body>
-  <h1>網站標題：影響我最深的一句話</h1>
-  <div class="container">
-    <div class="left">
-      <h2>鄭崑成</h2>
-      <img src="https://i.ibb.co/svTFTqV4/c690c271-623a-441f-8510-d1ad76b70ea5.png" >
+  <div class="headline">這是一個回應式網頁設計過長的範例</div>
+  <!-- 桌機選單 -->
+<!-- 桌機選單 -->
+<nav class="desktop-menu">
+  <ul class="menu-list">
+    <li>選項1</li>
+    <li>選項2</li>
+    <li>選項3</li>
+    <li>選項4</li>
+    <li>選項5</li>
+    <li>選項6</li>
+  </ul>
+</nav>
+
+<!-- 手機漢堡選單 -->
+<nav class="mobile-menu">
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <ul class="mobile-dropdown" id="mobileDropdown">
+    <li>選項1</li>
+    <li>選項2</li>
+    <li>選項3</li>
+    <li>選項4</li>
+    <li>選項5</li>
+    <li>選項6</li>
+  </ul>
+</nav>
+
+
+  <div class="list">
+    <div class="item">產品1</div>
+    <div class="item">產品2</div>
+    <div class="item">產品3</div>
+    <div class="item">產品4</div>
+  </div>
+  <div class="grid-container">
+    <div class="grid-item">我家鴿鴿下的蛋你一個也別想吃</div>
+    <div class="grid-item">
+      <img src="https://raw.githubusercontent.com/kz1070053-gg/image-host/refs/heads/main/bba0db16-b8ac-448a-875e-54c3b2969518%20(1).png" alt="Image" style="width: 100%; height: auto;">
     </div>
-    <div class="right">
-      <div class="right-left">
-        <div class="section">
-          <h3>那些能帶給我快樂的事情</h3>
-          <p>在生活的旅途中，一些偶爾而有力的勵志語句能夠成為我前行的動力，這些話句不僅僅是文字，更是一種能量，能夠激發我們內心的潛能，增強信心，帶來積極的心理暗示。</p>
-        </div>
-        <div class="section">
-          <div class="wavy-strikethrough">最喜歡的語錄</div>
-          <ol>
-            <li>即使黑暗再深，光明也會到來。</li>
-            <li>勇氣並不是不害怕，而是害怕也能繼續前行。</li>
-            <li>人生的成功不是終點，而是每一步的成長。</li>
-          </ol>
-        </div>
-        <div class="section">
-          <h3 class="highlight-yellow">我最喜歡的一首歌－勇氣</h3>
-        </div>
-        <div class="section">
-            <p>前路漫漫 總有繞不過的彎<br />
-                人生太短 悲歡自渡皆是傷<br />
-                這熙攘的人潮 誰不迷惘<br />
-                誰不是 在崩潰的邊緣 苦求著希望<br />
-                想要用魔法 解開生活的惆悵<br />
-                誰不是奔跑在黑暗中 追尋微弱的光<br />
-                也曾輕言過失敗 也曾被冷眼相待<br />
-                在最平庸的日子裡 頻繁受傷害<br />
-                人生吶 能不能放過我這一次<br />
-                下輩子我只想做個 不會長大的孩子<br />
-                有人取暖有人依靠 不會有太多心事<br />
-                用最天真的橡皮 就能擦去生活的爭執<br />
-                人生吶 能不能放過我這一次<br />
-                有時候明明很累 卻不知道為什麼要堅持<br />
-                殘酷的現實 在擊碎內心堅強的城池<br />
-                擦乾眼淚對著雞零狗碎的日子<br />
-                一笑了之</br>
-            </p>
-        </div>
-      </div>
-      <div class="right-right">
-        想要用魔法 解開生活的惆悵   <br />
-        誰不是奔跑在黑暗中 追尋微弱的光 <br />
-        也曾輕言過失敗 也曾被冷眼相待 <br />
-        在最平庸的日子裡 頻繁受傷害 <br />
-        人生吶 能不能放過我這一次 <br />
-        下輩子我只想做個 不會長大的孩子 <br />
-        有人取暖有人依靠 不會有太多心事 <br />
-        用最天真的橡皮 就能擦去生活的爭執 <br />
-        人生吶 能不能放過我這一次   <br />
-        有時候明明很累 卻不知道為什麼要堅持 <br />
-        殘酷的現實 在擊碎內心堅強的城池 <br />
-        擦乾眼淚對著雞零狗碎的日子 <br />
-        人生吶 能不能放過我這一次 <br />
-        下輩子我只想做個 不會長大的孩子 <br />
-        有人取暖有人依靠 不會有太多心事 <br />
-        用最天真的橡皮 就能擦去生活的爭執 <br />
-        人生吶 能不能放過我這一次 <br />
-        有時候明明很累 卻不知道為什麼要堅持 <br />
-        殘酷的現實 在擊碎內心堅強的城池 <br />
-        擦乾眼淚對著雞零狗碎的日子 <br />
-        一笑了之 <br />
-      </div>
+    <div class="grid-item">
+      <a href="https://www.bilibili.com/video/BV1om5az6E1C/?spm_id_from=333.40138.feed-card.all.click&vd_source=43a1df66581ee3a70a97b6ff1ca2e05d" target="_blank" style="color: white; text-decoration: none;">
+        點擊觀看影片
+      </a>
+    </div>
+    <div class="grid-item">
+      <img src="https://i.ibb.co/TMW4db55/e3fac3ecfcc104ce069072c687cf792a4d651d1c-jpg-760w-428h-1c-1.jpg" alt="image" style="width: 100%; height: auto;">
+    </div>
+    <div class="grid-item">你是內個內個內個內個內內</div>
+    <div class="grid-item">
+      <img src="https://i.ibb.co/4wsc5xWN/29d5124330dde655833f738c78534398585179ce-jpg-760w-428h-1c.jpg" alt="image" style="width: 100%; height: auto;">
     </div>
   </div>
+  
 </body>
 </html>
