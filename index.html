@@ -80,12 +80,12 @@
       background-color: pink;
       padding: 5px;
     }
-    @media (min-width: 768px) and (orientation: landscape) {
+
+    @media (min-width: 768px) {
       .container {
         flex-direction: row;
       }
       .left {
-        order: -1;
         flex: 1 1 33.33%;
         max-width: 33.33%;
       }
@@ -98,10 +98,8 @@
         height: auto;
       }
     }
+
     @media (max-width: 768px) {
-      h1 {
-        font-size: 40px;
-      }
       .container {
         flex-direction: column;
       }
@@ -114,21 +112,6 @@
       }
       .left img {
         max-height: 300px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 32px;
-      }
-      .section h3 {
-        font-size: 24px;
-      }
-      .section p {
-        font-size: 18px;
-      }
-      .right-right {
-        font-size: 18px;
       }
     }
   </style>
